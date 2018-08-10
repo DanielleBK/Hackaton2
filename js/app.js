@@ -5,6 +5,9 @@ $(document).ready(function(){
 		var left = evt.offsetX;
 		DZ.player.seek((evt.offsetX/$(this).width()) * 100);
 	});
+	$("a#mapPop").on("click", function () {
+	$('#myModal').modal({ show: true });
+  });
 });
 DZ.init({
 	appId  : '8',
@@ -38,3 +41,32 @@ function onPlayerLoaded() {
 		$("#slider_seek").find('.bar').css('width', (100*arg[0]/arg[1]) + '%');
 	});
 }
+
+
+var musicIcon = L.icon({
+    iconUrl: './assets/music_pin.png',
+    iconSize:     [30, 40], // size of the icon
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+function loadMap(){
+	//Leaflet Map
+	var initialCoordinates = [-23.5482751, -46.6350981]; // Sao Paulo
+	var initialZoomLevel = 20;
+
+	// create a map in the "map" div, set the view to a given place and zoom
+	var map = L.map('map').setView(initialCoordinates, initialZoomLevel);
+
+	// add an OpenStreetMap tile layer
+	L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  	attribution: '&copy; Contribuidores do <a href="https://osm.org/copyright">OpenStreetMap</a>'
+	}).addTo(map);
+
+	pontosTuristicos.forEach(ponto => {
+		let coordinates = [ponto.latitude, ponto.longitude];
+		L.marker(coordinates, {icon: musicIcon}).addTo(map).openPopup();
+	});
+}
+
+loadMap();

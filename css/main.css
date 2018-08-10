@@ -92,3 +92,9 @@ footer{
     background-color: purple;
     color: white;
 }
+#map{
+	display: flex;
+	height: 80vh;
+	width: 100%;
+	max-width: 500px;
+}
