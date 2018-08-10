@@ -43,30 +43,27 @@ function onPlayerLoaded() {
 }
 
 
-var musicIcon = L.icon({
-    iconUrl: './assets/music_pin.png',
-    iconSize:     [30, 40], // size of the icon
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-});
-
 function loadMap(){
-	//Leaflet Map
-	var initialCoordinates = [-23.5482751, -46.6350981]; // Sao Paulo
-	var initialZoomLevel = 20;
+    // create a map in the "map" div, set the view to a given place and zoom
+    var map = L.map('map').setView([-23.55,-46.65], 15);
 
-	// create a map in the "map" div, set the view to a given place and zoom
-	var map = L.map('map').setView(initialCoordinates, initialZoomLevel);
+    // add an OpenStreetMap tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-	// add an OpenStreetMap tile layer
-	L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-  	attribution: '&copy; Contribuidores do <a href="https://osm.org/copyright">OpenStreetMap</a>'
-	}).addTo(map);
+    var musicIcon = L.icon({
+        iconUrl: './assets/music_pin.png',
+        iconSize:     [40, 50],
+        shadowSize:   [50, 64],
+        iconAnchor:   [22, 94],
+        shadowAnchor: [4, 62],
+        popupAnchor:  [-3, -76]
+    });
 
-	pontosTuristicos.forEach(ponto => {
-		let coordinates = [ponto.latitude, ponto.longitude];
-		L.marker(coordinates, {icon: musicIcon}).addTo(map).openPopup();
-	});
+    pontosTuristicos.forEach(ponto => {
+        let coordinates = [ponto.latitude, ponto.longitude];
+        L.marker(coordinates, {icon: musicIcon}).addTo(map).bindPopup(ponto.name).addTo(map);
+    });
 }
-
 loadMap();
