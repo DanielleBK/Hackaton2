@@ -48,6 +48,5 @@ const pontosTuristicos = [
   "description": "Museu antigo com pinturas e esculturas brasileiras do século XIX que conta com programas educacionais.",
   "type": "museu"
  }
-​
-​
+
 ];
