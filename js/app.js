@@ -53,7 +53,7 @@ function loadMap(){
     }).addTo(map);
 
     var musicIcon = L.icon({
-        iconUrl: './assets/music_pin.png',
+        iconUrl: './assets/images/music_pin.png',
         iconSize:     [40, 50],
         shadowSize:   [50, 64],
         iconAnchor:   [22, 94],
