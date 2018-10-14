@@ -10,7 +10,7 @@ para casas noturnas, empresas apoiadoras a cultura musical, divulgação de novo
 
 **Apis Utilizadas:
 
-Deezer - para adicionar playlist
+Deezer - para adicionar playlist / 
 Street Map - mapas e points 
 
 
